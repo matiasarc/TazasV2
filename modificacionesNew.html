@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modificar Producto 🚀</title>
+    <title>Modificar Usuario 🚀</title>
     <link rel="stylesheet" href="./static/css/estilos.css">
 </head>
 
@@ -19,20 +19,13 @@
     <div class="logo-centrado">
         <img src="./static/imagenes/logo_Codo.jpg" alt="logo">
     </div>
-    <h1>Modificar Productos del Inventario</h1><br>
+    <h1>Modificar Usuarios</h1><br>
 
-    <!-- Contenedor principal que será controlado por JavaScript. Este contenedor tendrá dos formularios. -->
-    <!-- <div id="app"> -->
-        <!-- Primer formulario: Selector de producto. LLama a la función obtenerProducto cuando se envíe el formulario -->
-        <!-- <form id="form-obtener-producto">
-            <label for="idUsuario">Código:</label>
-            <input type="text" id="idUsuario" required><br>
-            <button type="submit">Modificar Producto</button> <a href="index.html">Menu principal</a>
-        </form> -->
-
-        <!-- Segundo formulario: se muestra solo si mostrarDatosProducto es verdadero. Llama a la función guardarCambios -->
+    <!-- Contenedor principal que será controlado por JavaScript. -->
+    <div id="app">
+        <!-- formulario: se muestra solo si mostrarDatosUsuario es verdadero. Llama a la función guardarCambios -->
         <div id="datos-producto" style="display: none;">
-            <h2>Datos del Producto</h2>
+            <h2>Datos del Usuario</h2>
             <form id="form-guardar-cambios">
                 <label for="nombreModificar">Nombre:</label>
                 <input type="text" id="nombreModificar" required><br>
@@ -78,10 +71,10 @@
         let imagen_url = '';
         let imagenSeleccionada = null;
         let imagenUrlTemp = null;
-        let mostrarDatosProducto = false;
+        let mostrarDatosUsuario = false;
         let valor = '';
 
-        //document.getElementById('form-obtener-producto').addEventListener('submit', obtenerProducto);
+        //document.getElementById('form-obtener-producto').addEventListener('submit', obtenerUsuario);
         document.getElementById('form-guardar-cambios').addEventListener('submit', guardarCambios);
         document.getElementById('nuevaImagen').addEventListener('change', seleccionarImagen);
 
@@ -91,7 +84,7 @@
         }
 
         // Se ejecuta cuando se envía el formulario de consulta. Realiza una solicitud GET a la API y obtiene los datos del producto correspondiente al código ingresado.
-        function obtenerProducto() {
+        function obtenerUsuario() {
             //event.preventDefault();
             idUsuario = valor;
             fetch(URL + 'usuarios/' + idUsuario)
@@ -99,7 +92,7 @@
                     if (response.ok) {
                         return response.json()
                     } else {
-                        throw new Error('Error al obtener los datos del producto.')
+                        throw new Error('Error al obtener los datos del usuario.')
                     }
                 })
                 .then(data => {
@@ -108,7 +101,7 @@
                     dineroTotal = data.dineroTotal;
                     nroDeCompras = data.nroDeCompras;
                     imagen_url = data.imagen_url;
-                    mostrarDatosProducto = true; //Activa la vista del segundo formulario
+                    mostrarDatosUsuario = true; //Activa la vista del segundo formulario
                     mostrarFormulario();
                 })
                 .catch(error => {
@@ -116,9 +109,9 @@
                 });
         }
 
-        // Muestra el formulario con los datos del producto
+        // Muestra el formulario con los datos del usuario
         function mostrarFormulario() {
-            if (mostrarDatosProducto) {
+            if (mostrarDatosUsuario) {
                 document.getElementById('nombreModificar').value = nombre;
                 document.getElementById('edadModificar').value = edad;
                 document.getElementById('dineroTotalModificar').value = dineroTotal;
@@ -154,7 +147,7 @@
             imagenVistaPrevia.style.display = 'block';
         }
 
-        // Se usa para enviar los datos modificados del producto al servidor.
+        // Se usa para enviar los datos modificados del usuario al servidor.
         function guardarCambios(event) {
             event.preventDefault();
 
@@ -178,18 +171,18 @@
                     if (response.ok) {
                         return response.json()
                     } else {
-                        throw new Error('Error al guardar los cambios del producto.')
+                        throw new Error('Error al guardar los cambios del usuario.')
                     }
                 })
                 .then(data => {
-                    alert('Producto actualizado correctamente.');
+                    alert('Usuario actualizado correctamente.');
                     //limpiarFormulario();
                     window.location.href = "usuarios.html";
                 })
-                // .catch(error => {
-                //     console.error('Error:', error);
-                //     alert('Error al actualizar el producto.');
-                // });
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Error al actualizar el usuario.');
+                });
         }
 
         // Restablece todas las variables relacionadas con el formulario a sus valores iniciales, lo que efectivamente "limpia" el formulario.
@@ -215,7 +208,7 @@
             imagen_url = '';
             imagenSeleccionada = null;
             imagenUrlTemp = null;
-            mostrarDatosProducto = false;
+            mostrarDatosUsuario = false;
 
             //document.getElementById('datos-producto').style.display = 'none';
         }
@@ -223,7 +216,7 @@
         document.addEventListener("DOMContentLoaded", function() {
             valor = getQueryParam("valor");
             //document.getElementById("valor").textContent = `El valor pasado es: ${valor}`;
-            obtenerProducto();
+            obtenerUsuario();
         });
     </script>
 </body>
