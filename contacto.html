@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link rel="stylesheet" href="estilos.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda de Tazas</title>
+</head>
+<body>
+    <script src="animaciones.js"></script>
+    <nav class="navbar">
+        <h1 class="navbar-title">Tazas Locas</h1>
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="productos.html">Productos</a></li>
+            <li><a href="servicios.html">Servicios</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+    </nav>
+    <h2 class="form-container">Contacto</h2>
+    <div class="form-container">
+        <form class="form-group" id="contactForm" action="https://formspree.io/f/xrgndvky" method="post" onsubmit="return validateForm()">
+            <div class="form-group">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre">
+            </div>
+            <div class="form-group">
+                <label for="correo">Correo electrónico:</label>
+                <input type="text" id="correo" name="correo">
+            </div>
+            <div class="form-group">
+                <label for="consulta">Consulta:</label>
+                <textarea id="consulta" name="consulta" rows="4"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="motivo">Motivo de la consulta:</label>
+                <select id="motivo" name="motivo">
+                    <option value="">Seleccionar...</option>
+                    <option value="Compra">Compra</option>
+                    <option value="Producto">Producto</option>
+                    <option value="Envío">Envío</option>
+                    <option value="Otro">Otro</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>¿Cómo prefieres ser contactado?</label>
+                <div class="contacto-options">
+                    <input type="radio" id="contactoEmail" name="contacto" value="email">
+                    <label for="contactoEmail">Correo electrónico</label>
+                    <input type="radio" id="contactoTelefono" name="contacto" value="telefono">
+                    <label for="contactoTelefono">Teléfono</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="imagen">Adjuntar imagen (opcional):</label>
+                <input type="file" id="imagen" name="imagen">
+            </div>
+            <p id="my-form-status"></p><br>
+            <input type="submit" id="submit-button" value="Enviar consulta">
+        </form>
+    </div>
+
+    <script src="contactoScript.js"></script>
+</body>
+</html>
