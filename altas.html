@@ -41,7 +41,7 @@
         <input type="text" id="proveedorProducto" name="nroDeCompras">
         
         <button type="submit">Agregar Producto</button>
-        <a href="index.html">Cancelar y voler...</a>
+        <a href="usuarios.html">Cancelar y voler...</a>
     </form>
 
     <script>
@@ -78,7 +78,7 @@
                 //Respuesta OK, muestra una alerta informando que el producto se agregó correctamente y limpia los campos del formulario para que puedan ser utilizados para un nuevo producto.
                 .then(function (data) {
                     alert('Producto agregado correctamente.');
-                    window.location.href = "index.html";
+                    window.location.href = "usuarios.html";
                 })
 
                 // En caso de error, mostramos una alerta con un mensaje de error.
