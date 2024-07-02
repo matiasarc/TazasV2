@@ -49,7 +49,7 @@
         //const URL = "https://USUARIO.pythonanywhere.com/"
         
         // Obtiene el contenido del inventario
-        function obtenerProductos() {
+        function obtenerUsuarios() {
             fetch(URL + 'usuarios') // Realiza una solicitud GET al servidor y obtener la lista de usuarios.
                 .then(response => {
                     // Si es exitosa (response.ok), convierte los datos de la respuesta de formato JSON a un objeto JavaScript.
@@ -57,17 +57,17 @@
                 })
                 // Asigna los datos de los usuarios obtenidos a la propiedad usuarios del estado.
                 .then(data => {
-                    const productosTable = document.getElementById('usuarios-table').getElementsByTagName('tbody')[0];
-                    productosTable.innerHTML = ''; // Limpia la tabla antes de insertar nuevos datos
-                    data.forEach(producto => {
-                        const row = productosTable.insertRow();
+                    const usuariosTabla = document.getElementById('usuarios-table').getElementsByTagName('tbody')[0];
+                    usuariosTabla.innerHTML = ''; // Limpia la tabla antes de insertar nuevos datos
+                    data.forEach(usuario => {
+                        const row = usuariosTabla.insertRow();
                         row.innerHTML = `
-                            <td>${producto.idUsuario}</td>
-                            <td>${producto.nombre}</td>
-                            <td>${producto.edad}</td>
-                            <td align="right">${producto.dineroTotal}</td>
-                            <td><button onclick="eliminarProducto('${producto.idUsuario}')">Eliminar</button></td>
-                            <td><button onclick="modificarProducto('${producto.idUsuario}')">Modificar</button></td>
+                            <td>${usuario.idUsuario}</td>
+                            <td>${usuario.nombre}</td>
+                            <td>${usuario.edad}</td>
+                            <td align="right">${usuario.dineroTotal}</td>
+                            <td><button onclick="eliminarUsr('${usuario.idUsuario}')">Eliminar</button></td>
+                            <td><button onclick="modificarUsr('${usuario.idUsuario}')">Modificar</button></td>
                         `;
                     });
                 })
@@ -78,15 +78,15 @@
                 });
         }
 
-        // Se utiliza para eliminar un producto.
-        function eliminarProducto(idUsuario) {
+        // Se utiliza para eliminar un usuario.
+        function eliminarUsr(idUsuario) {
             // Se muestra un diálogo de confirmación. Si el usuario confirma, se realiza una solicitud DELETE al servidor a través de fetch(URL + 'usuarios/${idUsuario}', {method: 'DELETE' }).
             if (confirm('¿Estás seguro de que quieres eliminar este usuario?')) {
                 fetch(URL + `usuarios/${idUsuario}`, { method: 'DELETE' })
                     .then(response => {
                         if (response.ok) {
                             // Si es exitosa (response.ok), elimina el usuario y da mensaje de ok.
-                            obtenerProductos(); // Vuelve a obtener la lista de usuarios para actualizar la tabla.
+                            obtenerUsuarios(); // Vuelve a obtener la lista de usuarios para actualizar la tabla.
                             alert('Usuario eliminado correctamente.');
                         }
                     })
@@ -96,13 +96,13 @@
                     });
             }
         }
-        function modificarProducto(idUsuario) {
+        function modificarUsr(idUsuario) {
             //fetch(URL + `usuarios/${idUsuario}`, { method: 'DELETE' })
             window.location.href = `modificacionesNew.html?valor=${idUsuario}`;
         }
 
-        // Cuando la página se carga, llama a obtenerProductos para cargar la lista de usuarios.
-        document.addEventListener('DOMContentLoaded', obtenerProductos);
+        // Cuando la página se carga, llama a obtenerUsuarios para cargar la lista de usuarios.
+        document.addEventListener('DOMContentLoaded', obtenerUsuarios);
     </script>
 </body>
 </html>

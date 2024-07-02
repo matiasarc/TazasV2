@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agregar producto 🚀</title>
-    <link rel="stylesheet" href="./static/css/estilos.css">
+    <link rel="stylesheet" href="estilos.css">
 </head>
 
 <body>
@@ -19,7 +19,7 @@
     <div class="logo-centrado">
         <img src="./static/imagenes/logo_Codo.jpg" alt="logo">
     </div>
-    <h1>Agregar Productos al Inventario</h1><br>
+    <h1>Agregar Ususarios</h1><br>
 
     <!--enctype="multipart/form-data" es necesario para enviar archivos al back.-->
     <form id="formulario" enctype="multipart/form-data">
@@ -33,15 +33,15 @@
         <label for="dineroTotal">Dinero Total:</label>
         <input type="number" step="0.01" id="dineroTotal" name="dineroTotal" required><br>
 
-        <label for="imagenProducto">Imagen del producto:</label>
+        <label for="imagenProducto">Imagen del usuario:</label>
         <input type="file" id="imagenProducto" name="imagen">
 
         <br><br>
-        <label for="proveedorProducto">Proveedor:</label>
-        <input type="text" id="proveedorProducto" name="nroDeCompras">
+        <label for="nroCompras">Cantidad de compras:</label>
+        <input type="text" id="nroCompras" name="nroDeCompras">
         
-        <button type="submit">Agregar Producto</button>
-        <a href="usuarios.html">Cancelar y voler...</a>
+        <button type="submit">Agregar usuario</button>
+        <a href="usuarios.html">Cancelar y volver...</a>
     </form>
 
     <script>
@@ -77,13 +77,14 @@
 
                 //Respuesta OK, muestra una alerta informando que el producto se agregó correctamente y limpia los campos del formulario para que puedan ser utilizados para un nuevo producto.
                 .then(function (data) {
-                    alert('Producto agregado correctamente.');
+                    alert('Usuario agregado correctamente.');
                     window.location.href = "usuarios.html";
                 })
 
                 // En caso de error, mostramos una alerta con un mensaje de error.
                 .catch(function (error) {
-                    alert('Error al agregar el producto222.');
+                    alert('Error al agregar el usuario222.');
+                    window.location.href = "usuarios.html";
                 })
 
                 // Limpiar el formulario en ambos casos (éxito o error)
@@ -92,7 +93,7 @@
                     document.getElementById('edad').value = "";
                     document.getElementById('dineroTotal').value = "";
                     document.getElementById('imagenProducto').value = "";
-                    document.getElementById('proveedorProducto').value = "";
+                    document.getElementById('nroCompras').value = "";
                 });
         })
     </script>
