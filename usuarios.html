@@ -32,6 +32,7 @@
                 <th>Nombre</th>
                 <th>Edad</th>
                 <th align="right">Dinero</th>
+                <th>Compras</th>
                 <th>Elimin.</th>
                 <th>Modif.</th>
             </tr>
@@ -66,6 +67,7 @@
                             <td>${usuario.nombre}</td>
                             <td>${usuario.edad}</td>
                             <td align="right">${usuario.dineroTotal}</td>
+                            <td align="center">${usuario.nroDeCompras}</td>
                             <td><button onclick="eliminarUsr('${usuario.idUsuario}')">Eliminar</button></td>
                             <td><button onclick="modificarUsr('${usuario.idUsuario}')">Modificar</button></td>
                         `;
