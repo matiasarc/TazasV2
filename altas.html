@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agregar producto 🚀</title>
+    <title>Agregar usuario 🚀</title>
     <link rel="stylesheet" href="estilos.css">
 </head>
 
@@ -33,8 +33,8 @@
         <label for="dineroTotal">Dinero Total:</label>
         <input type="number" step="0.01" id="dineroTotal" name="dineroTotal" required><br>
 
-        <label for="imagenProducto">Imagen del usuario:</label>
-        <input type="file" id="imagenProducto" name="imagen">
+        <label for="imagenUsuario">Imagen del usuario:</label>
+        <input type="file" id="imagenUsuario" name="imagen">
 
         <br><br>
         <label for="nroCompras">Cantidad de compras:</label>
@@ -71,11 +71,11 @@
                         } else {
                             // Si hubo un error, lanzar explícitamente una excepción
                             // para ser "catcheada" más adelante
-                            throw new Error('Error al agregar el producto111.');
+                            throw new Error('Error al agregar el usuario.');
                         }
                 })
 
-                //Respuesta OK, muestra una alerta informando que el producto se agregó correctamente y limpia los campos del formulario para que puedan ser utilizados para un nuevo producto.
+                //Respuesta OK, muestra una alerta informando que el usuario se agregó correctamente y limpia los campos del formulario para que puedan ser utilizados para un nuevo usuario.
                 .then(function (data) {
                     alert('Usuario agregado correctamente.');
                     window.location.href = "usuarios.html";
@@ -92,7 +92,7 @@
                     document.getElementById('nombre').value = "";
                     document.getElementById('edad').value = "";
                     document.getElementById('dineroTotal').value = "";
-                    document.getElementById('imagenProducto').value = "";
+                    document.getElementById('imagenUsuario').value = "";
                     document.getElementById('nroCompras').value = "";
                 });
         })
