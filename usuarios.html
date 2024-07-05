@@ -5,27 +5,28 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ABM Productos 🚀</title>
+    <title>Usuarios</title>
     <link rel="stylesheet" href="estilos.css">
 </head>
 
 <body>
-    <header>
-        <nav class="navbar-index">
-            <img class="logo-nav" src="./static/imagenes/logos-nav.webp" alt="logo agencia de aprendizaje">
-        </nav>
-    </header>
+    <script src="animaciones.js"></script>
+    <nav class="navbar">
+        <h1 class="navbar-title">Tazas Locas</h1>
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="productos.html">Productos</a></li>
+            <li><a href="servicios.html">Servicios</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+    </nav>
+    <h2 class="form-container">Gestión de usuarios</h2>
 
-    <div class="logo-centrado">
-        <img src="./static/imagenes/logo_Codo.jpg" alt="logo">
+    <div class="form-container">
+        <a href="altas.html" class="link-usuarios">Agregar usuario nuevo...</a>
     </div>
-    <h1>Usuarios</h1><br>
 
-    <div class="contenedor-centrado">
-        <a href="altas.html">Agregar usuario nuevo...</a>
-    </div>
-
-    <table id="usuarios-table"> <!-- Se crea una tabla para mostrar los usuarios. -->
+    <table class="usuarios-tabla" id="usuarios-table"> <!-- Se crea una tabla para mostrar los usuarios. -->
         <thead> <!--Encabezado de la tabla con columnas para id, nombre, edad, dineroTotal y acciones.-->
             <tr>
                 <th>ID</th>

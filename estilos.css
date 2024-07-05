@@ -287,3 +287,47 @@ h2{
 }
 
 
+.usuarios-tabla {
+    max-width: 90%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #dbc4c4;
+    border: 1px solid cf0a0a;
+    border-radius: 5px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+    border-collapse: separate;
+    border-spacing: 15px 20px;
+    /* align-items: center; */
+}
+
+.usuarios-tabla button {
+    padding: 2px;
+    margin:1px;
+    background-color: #cf0a0a;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.usuarios-tabla button:hover {
+    background-color: #615050;
+}
+
+.link-usuarios{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #cf0a0a;
+    border: none;
+    margin: 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+}
