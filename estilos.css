@@ -312,7 +312,7 @@ h2{
 }
 
 .usuarios-tabla button:hover {
-    background-color: #615050;
+    background-color: #ff6804;
 }
 
 .link-usuarios{
@@ -330,4 +330,8 @@ h2{
     text-decoration: none;
     text-align: center;
     cursor: pointer;
+}
+
+.link-usuarios:hover {
+    background-color: #ff6804;
 }
