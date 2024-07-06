@@ -17,13 +17,11 @@ import os
 import time
 #--------------------------------------------------------------------
 
-
-
-app = Flask(__name__)
-CORS(app)  # Esto habilitará CORS para todas las rutas
+usuariosFlask = Flask(__name__)
+CORS(usuariosFlask)  # Esto habilitará CORS para todas las rutas
 
 #--------------------------------------------------------------------
-class Catalogo:
+class UsuariosServer:
     #----------------------------------------------------------------
     # Constructor de la clase
     def __init__(self, host, user, password, database):
@@ -118,10 +116,10 @@ class Catalogo:
 #--------------------------------------------------------------------
 # Cuerpo del programa
 #--------------------------------------------------------------------
-# Crear una instancia de la clase Catalogo
-catalogo = Catalogo(host='sql10.freemysqlhosting.net', user='sql10717353', password='nIZtbnw9yy', database='sql10717353')
-#catalogo = Catalogo(host='7qv.h.filess.io', user='cac_broaddawn', password='dd8f805bf4a8c0e20a14c957109a81645a243e55', database='cac_broaddawn')
-#catalogo = Catalogo(host='USUARIO.mysql.pythonanywhere-services.com', user='USUARIO', password='CLAVE', database='USUARIO$miapp')
+# Crear una instancia de la clase UsuariosServer
+catalogo = UsuariosServer(host='sql10.freemysqlhosting.net', user='sql10717353', password='nIZtbnw9yy', database='sql10717353')
+#catalogo = UsuariosServer(host='7qv.h.filess.io', user='cac_broaddawn', password='dd8f805bf4a8c0e20a14c957109a81645a243e55', database='cac_broaddawn')
+#catalogo = UsuariosServer(host='USUARIO.mysql.pythonanywhere-services.com', user='USUARIO', password='CLAVE', database='USUARIO$miapp')
 
 
 # Carpeta para guardar las imagenes.
@@ -136,7 +134,7 @@ RUTA_DESTINO = 'imagenesUsr/'
 #--------------------------------------------------------------------
 #La ruta Flask /usuarios con el método HTTP GET está diseñada para proporcionar los detalles de todos los usuarios almacenados en la base de datos.
 #El método devuelve una lista con todos los usuarios en formato JSON.
-@app.route("/usuarios", methods=["GET"])
+@usuariosFlask.route("/usuarios", methods=["GET"])
 def listar_usuarios():
     usuarios = catalogo.listar_usuarios()
     return jsonify(usuarios)
@@ -147,7 +145,7 @@ def listar_usuarios():
 #--------------------------------------------------------------------
 #La ruta Flask /usuarios/<int:idUsuario> con el método HTTP GET está diseñada para proporcionar los detalles de un usuario específico basado en su código.
 #El método busca en la base de datos el usuario con el código especificado y devuelve un JSON con los detalles del usuario si lo encuentra, o None si no lo encuentra.
-@app.route("/usuarios/<int:idUsuario>", methods=["GET"])
+@usuariosFlask.route("/usuarios/<int:idUsuario>", methods=["GET"])
 def mostrar_usuarios(idUsuario):
     usuario = catalogo.consultar_usuario(idUsuario)
     if usuario:
@@ -159,7 +157,7 @@ def mostrar_usuarios(idUsuario):
 #--------------------------------------------------------------------
 # Agregar un usuario
 #--------------------------------------------------------------------
-@app.route("/usuarios", methods=["POST"])
+@usuariosFlask.route("/usuarios", methods=["POST"])
 #La ruta Flask `/usuarios` con el método HTTP POST está diseñada para permitir la adición de un nuevo usuario a la base de datos.
 #La función agregar_usuario se asocia con esta URL y es llamada cuando se hace una solicitud POST a /usuarios.
 def agregar_usuario():
@@ -191,7 +189,7 @@ def agregar_usuario():
 #--------------------------------------------------------------------
 # Modificar un usuario según su código
 #--------------------------------------------------------------------
-@app.route("/usuarios/<int:idUsuario>", methods=["PUT"])
+@usuariosFlask.route("/usuarios/<int:idUsuario>", methods=["PUT"])
 #La ruta Flask /usuarios/<int:idUsuario> con el método HTTP PUT está diseñada para actualizar la información de un usuario existente en la base de datos, identificado por su código.
 #La función modificar_usuario se asocia con esta URL y es invocada cuando se realiza una solicitud PUT a /usuarios/ seguido de un número (el código del usuario).
 def modificar_usuario(idUsuario):
@@ -245,7 +243,7 @@ def modificar_usuario(idUsuario):
 #--------------------------------------------------------------------
 # Eliminar un usuario según su código
 #--------------------------------------------------------------------
-@app.route("/usuarios/<int:idUsuario>", methods=["DELETE"])
+@usuariosFlask.route("/usuarios/<int:idUsuario>", methods=["DELETE"])
 #La ruta Flask /usuarios/<int:idUsuario> con el método HTTP DELETE está diseñada para eliminar un usuario específico de la base de datos, utilizando su código como identificador.
 #La función eliminar_usuarios se asocia con esta URL y es llamada cuando se realiza una solicitud DELETE a /usuarios/ seguido de un número (el código del usuario).
 def eliminar_usuarios(idUsuario):
@@ -273,4 +271,4 @@ def eliminar_usuarios(idUsuario):
 
 #--------------------------------------------------------------------
 if __name__ == "__main__":
-    app.run(debug=True)
+    usuariosFlask.run(debug=True)
