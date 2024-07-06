@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administración</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='estilos.css') }}">
+</head>
+<body>
+    <h1>Panel de Administración</h1>
+    <h2>Agregar Taza</h2>
+    <form action="{{ url_for('add_taza') }}" method="post">
+        <label for="nombre">Nombre de la Taza:</label>
+        <input type="text" id="nombre" name="nombre" required><br><br>
+        <label for="precio">Precio de la Taza:</label>
+        <input type="text" id="precio" name="precio" required><br><br>
+        <input type="submit" value="Agregar Taza">
+    </form>
+
+    <h2>Listado de Tazas</h2>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Precio</th>
+            <th>Acción</th>
+        </tr>
+        {% for taza in tazas %}
+        <tr>
+            <td>{{ taza[0] }}</td>
+            <td>{{ taza[1] }}</td>
+            <td>{{ taza[2] }}</td>
+            <td>
+                <form action="{{ url_for('delete_taza') }}" method="post" style="display:inline;">
+                    <input type="hidden" name="id" value="{{ taza[0] }}">
+                    <input type="submit" value="Eliminar">
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    {% if taza_to_delete %}
+    <div id="confirmDeleteModal" class="modal">
+        <div class="modal-content">
+            <h2>Confirmar Eliminación</h2>
+            <p>¿Estás seguro que deseas eliminar la taza "{{ taza_to_delete_name }}"?</p>
+            <form action="{{ url_for('confirm_delete_taza') }}" method="post">
+                <input type="hidden" name="id" value="{{ taza_to_delete }}">
+                <input type="submit" value="Confirmar">
+            </form>
+            <form action="{{ url_for('admin') }}" method="get">
+                <input type="submit" value="Cancelar">
+            </form>
+        </div>
+    </div>
+    {% endif %}
+</body>
+</html>
