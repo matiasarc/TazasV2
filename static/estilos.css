@@ -161,10 +161,20 @@ h2{
 }
 .form-container {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    /*height: 100vh; /* Para que ocupe toda la altura del viewport */
-    /*max-width: 700px;*/
+}
+.form-container .form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 300px;
+}
+
+.form-container .form-group input[type="submit"] {
+    margin-top: 10px;
+    align-self: center;
 }
 
 .form-container h2{
@@ -187,7 +197,7 @@ h2{
 }
 
 .form-group input[type="submit"] {
-    background-color: #147910;
+    background-color: #cf0a0a;
     padding: 10px 20px;
     color: #fff;
     border: none;
@@ -330,3 +340,67 @@ h2{
     margin-top: 10px;
 }
 
+.eliminar {
+    background-color: #cf0a0a;
+    color: #FFFFFF;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+}
+.usuarios-tabla {
+    max-width: 90%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #dbc4c4;
+    border: 1px solid cf0a0a;
+    border-radius: 5px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+    border-collapse: separate;
+    border-spacing: 15px 20px;
+    /* align-items: center; */
+}
+
+.usuarios-tabla button {
+    padding: 2px;
+    margin:1px;
+    background-color: #cf0a0a;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.usuarios-tabla button:hover {
+    background-color: #ff6804;
+}
+
+.link-usuarios{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #cf0a0a;
+    border: none;
+    margin: 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    text-align: center;
+    cursor: pointer;
+}
+
+.link-usuarios:hover {
+    background-color: #ff6804;
+}
+
+.form-container .form-group input[type="text"],
+.form-container .form-group input[type="password"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    box-sizing: border-box;
+}
