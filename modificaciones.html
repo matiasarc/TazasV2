@@ -12,10 +12,8 @@
 <body>
     <h2 class="form-container">Modificar usuario</h2>
 
-    <!-- Contenedor principal que será controlado por JavaScript. -->
     <div class="form-container" id="app">
-        <!-- formulario: se muestra solo si mostrarDatosUsuario es verdadero. Llama a la función guardarCambios -->
-        <div id="datos-producto" style="display: none;">
+        <div id="datos-producto" style="display: block;">
             <form class="form-group" id="form-guardar-cambios">
                 <label for="nombreModificar">Nombre:</label>
                 <input type="text" id="nombreModificar" required><br>
@@ -26,13 +24,10 @@
                 <label for="dineroTotalModificar">Dinero total:</label>
                 <input type="number" step="0.01" id="dineroTotalModificar" required><br>
 
-                <!-- Imagen actual del producto - Debe comentarse al subirse al servidor-->
                 <img id="imagen-actual" style="max-width: 200px; display: none;">
 
-                <!-- Vista previa de la nueva imagen seleccionada -->
                 <img id="imagen-vista-previa" style="max-width: 200px; display: none;">
 
-                <!-- Input para nueva imagen -->
                 <label for="nuevaImagen">Nueva Imagen:</label>
                 <input type="file" id="nuevaImagen"><br>
 
@@ -47,12 +42,8 @@
     </div>
 
     <script>
-        const URL = "http://127.0.0.1:5000/"
+        const URL = "http://127.0.0.1:5000/" //const URL = "https://USUARIO.pythonanywhere.com/"
 
-        // Al subir al servidor, deberá utilizarse la siguiente ruta. USUARIO debe ser reemplazado por el nombre de usuario de Pythonanywhere
-        //const URL = "https://USUARIO.pythonanywhere.com/"
-
-        // Variables de estado para controlar la visibilidad y los datos del formulario
         let idUsuario = '';
         let nombre = '';
         let edad = '';
@@ -64,7 +55,6 @@
         let mostrarDatosUsuario = false;
         let valor = '';
 
-        //document.getElementById('form-obtener-producto').addEventListener('submit', obtenerUsuario);
         document.getElementById('form-guardar-cambios').addEventListener('submit', guardarCambios);
         document.getElementById('nuevaImagen').addEventListener('change', seleccionarImagen);
 
@@ -95,11 +85,10 @@
                     mostrarFormulario();
                 })
                 .catch(error => {
-                    alert('Código no encontrado.');
+                    alert('Usuario no encontrado.');
                 });
         }
 
-        // Muestra el formulario con los datos del usuario
         function mostrarFormulario() {
             if (mostrarDatosUsuario) {
                 document.getElementById('nombreModificar').value = nombre;
@@ -108,16 +97,12 @@
                 document.getElementById('comprasModificar').value = nroDeCompras;
 
                 const imagenActual = document.getElementById('imagen-actual');
-                if (imagen_url && !imagenSeleccionada) { // Verifica si imagen_url no está vacía y no se ha seleccionado una imagen
+                if (imagen_url && !imagenSeleccionada) { 
 
-                    imagenActual.src = './imagenesUsr/' + imagen_url;                    
-                    
-                    //Al subir al servidor, deberá utilizarse la siguiente ruta. USUARIO debe ser reemplazado por el nombre de usuario de Pythonanywhere
-                    //imagenActual.src = 'https://www.pythonanywhere.com/user/USUARIO/files/home/USUARIO/mysite/static/imagenes/' + imagen_url;
-
-                    imagenActual.style.display = 'block'; // Muestra la imagen actual
+                    imagenActual.src = './imagenesUsr/' + imagen_url;        //imagenActual.src = 'https://www.pythonanywhere.com/user/USUARIO/files/home/USUARIO/mysite/static/imagenes/' + imagen_url;             
+                    imagenActual.style.display = 'block';
                 } else {
-                    imagenActual.style.display = 'none'; // Oculta la imagen si no hay URL
+                    imagenActual.style.display = 'none';
                 }
 
                 document.getElementById('datos-producto').style.display = 'block';
@@ -126,18 +111,16 @@
             }
         }
 
-        // Se activa cuando el usuario selecciona una imagen para cargar.
         function seleccionarImagen(event) {
             const file = event.target.files[0];
             imagenSeleccionada = file;
-            imagenUrlTemp = URL.createObjectURL(file); // Crea una URL temporal para la vista previa
+            imagenUrlTemp = URL.createObjectURL(file);
 
             const imagenVistaPrevia = document.getElementById('imagen-vista-previa');
             imagenVistaPrevia.src = imagenUrlTemp;
             imagenVistaPrevia.style.display = 'block';
         }
 
-        // Se usa para enviar los datos modificados del usuario al servidor.
         function guardarCambios(event) {
             event.preventDefault();
 
@@ -148,7 +131,6 @@
             formData.append('nroDeCompras', document.getElementById('comprasModificar').value);
             formData.append('dineroTotal', document.getElementById('dineroTotalModificar').value);
 
-            // Si se ha seleccionado una imagen nueva, la añade al formData. 
             if (imagenSeleccionada) {
                 formData.append('imagen', imagenSeleccionada, imagenSeleccionada.name);
             }
@@ -166,7 +148,6 @@
                 })
                 .then(data => {
                     alert('Usuario actualizado correctamente.');
-                    //limpiarFormulario();
                     window.location.href = "usuarios.html";
                 })
                 .catch(error => {
@@ -175,37 +156,8 @@
                 });
         }
 
-        // Restablece todas las variables relacionadas con el formulario a sus valores iniciales, lo que efectivamente "limpia" el formulario.
-        function limpiarFormulario() {
-            document.getElementById('idUsuario').value = '';
-            document.getElementById('nombreModificar').value = '';
-            document.getElementById('edadModificar').value = '';
-            document.getElementById('dineroTotalModificar').value = '';
-            document.getElementById('comprasModificar').value = '';
-            document.getElementById('nuevaImagen').value = '';
-
-            const imagenActual = document.getElementById('imagen-actual');
-            imagenActual.style.display = 'none';
-
-            const imagenVistaPrevia = document.getElementById('imagen-vista-previa');
-            imagenVistaPrevia.style.display = 'none';
-
-            idUsuario = '';
-            nombre = '';
-            edad = '';
-            dineroTotal = '';
-            nroDeCompras = '';
-            imagen_url = '';
-            imagenSeleccionada = null;
-            imagenUrlTemp = null;
-            mostrarDatosUsuario = false;
-
-            //document.getElementById('datos-producto').style.display = 'none';
-        }
-        
         document.addEventListener("DOMContentLoaded", function() {
             valor = getQueryParam("valor");
-            //document.getElementById("valor").textContent = `El valor pasado es: ${valor}`;
             obtenerUsuario();
         });
     </script>
