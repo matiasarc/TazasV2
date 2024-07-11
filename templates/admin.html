@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administración</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='estilos.css') }}">
+</head>
+<body>
+    <h1>Panel de Administración</h1>
+    <h2 class="form-container">Agregar Taza</h2>
+    <form action="{{ url_for('add_taza') }}" method="post" class="form-container">
+        <div class="form-group">
+            <label for="nombre">Nombre de la Taza:</label>
+            <input type="text" id="nombre" name="nombre" required>
+        </div>
+        <div class="form-group">
+            <label for="precio">Precio de la Taza:</label>
+            <input type="text" id="precio" name="precio" required>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Agregar Taza" class="link-usuarios">
+        </div>
+    </form>
+
+    <h2 class="form-container">Listado de Tazas</h2>
+    <table class="usuarios-tabla">
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Precio</th>
+        </tr>
+        {% for taza in tazas %}
+        <tr>
+            <td>{{ taza[0] }}</td>
+            <td>{{ taza[1] }}</td>
+            <td>{{ taza[2] }}</td>
+            <td>
+                <form action="{{ url_for('delete_taza') }}" method="post" style="display:inline;">
+                    <input type="hidden" name="id" value="{{ taza[0] }}">
+                    <button type="submit">Eliminar</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    {% if taza_to_delete %}
+    <div id="confirmDeleteModal" class="form-container">
+        <h2>Confirmar Eliminación</h2>
+        <p>¿Estás seguro que deseas eliminar la taza "{{ taza_to_delete_name }}"?</p>
+        <form action="{{ url_for('confirm_delete_taza') }}" method="post">
+            <input type="hidden" name="id" value="{{ taza_to_delete }}">
+            <button type="submit" class="link-usuarios">Confirmar</button>
+        </form>
+        <form action="{{ url_for('admin') }}" method="get">
+            <button type="submit" class="link-usuarios">Cancelar</button>
+        </form>
+    </div>
+    {% endif %}
+</body>
+</html>
